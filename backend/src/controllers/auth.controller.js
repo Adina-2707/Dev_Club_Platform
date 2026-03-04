@@ -1,14 +1,13 @@
-const bcrypt = require('bcrypt');
-const pool = require('../db');
+import bcrypt from 'bcrypt';
+import { pool } from '../db.js';
 
 const SALT_ROUNDS = 10;
 
 // REGISTER
-exports.register = async (req, res) => {
+export const register = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // ВОТ ЗДЕСЬ происходит хэширование
     const hashedPassword = await bcrypt.hash(password, SALT_ROUNDS);
 
     await pool.query(
@@ -24,7 +23,7 @@ exports.register = async (req, res) => {
 };
 
 // LOGIN
-exports.login = async (req, res) => {
+export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -39,7 +38,7 @@ exports.login = async (req, res) => {
 
     const user = result.rows[0];
 
-    // 👉 Проверка пароля
+    // Check password
     const isMatch = await bcrypt.compare(password, user.password);
 
     if (!isMatch) {
@@ -52,25 +51,3 @@ exports.login = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
-
-async function login(req, res) {
-  try {
-    const { email, password } = req.body;
-
-    const user = await User.findOne({ email });
-
-    if (!user) {
-      return res.status(401).json({ message: 'Invalid credentials' });
-    }
-
-    const isMatch = await bcrypt.compare(password, user.password);
-
-    if (!isMatch) {
-      return res.status(401).json({ message: 'Invalid credentials' });
-    }
-
-    res.json({ message: 'Login successful' });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-}
