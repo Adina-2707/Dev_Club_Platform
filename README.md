@@ -210,5 +210,3 @@ console.log(response.data); // [{ id, email }, ...]
 - [x] Axios API service created
 - [x] Test API request working (Home page creates/fetches users)
 - [x] Frontend runs on port 5173
-
-

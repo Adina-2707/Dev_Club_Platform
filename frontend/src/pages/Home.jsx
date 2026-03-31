@@ -62,7 +62,7 @@ export default function Home() {
 
       {error && <div style={{ color: 'red', marginBottom: '20px', padding: '10px', background: '#ffe0e0' }}>{error}</div>}
 
-      <form onSubmit={handleCreateUser} style={{ marginBottom: '30px', padding: '20px', background: '#f5f5f5', borderRadius: '5px' }}>
+      <form onSubmit={handleCreateUser} style={{ marginBottom: '30px', padding: '20px', background: 'rgb(154, 154, 154)', borderRadius: '5px' }}>
         <h2>Create New User</h2>
         <div style={{ marginBottom: '10px' }}>
           <label>Email: </label>

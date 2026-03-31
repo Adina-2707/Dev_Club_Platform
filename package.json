@@ -1,0 +1,13 @@
+{
+  "name": "dec-club-root",
+  "private": true,
+  "scripts": {
+    "start:backend": "cd backend && npm start",
+    "start:frontend": "cd frontend && npm run dev",
+    "start:auth-api": "cd my-auth-api && npm start",
+    "start:full": "npx concurrently \"npm run start:backend\" \"npm run start:frontend\" \"cd my-auth-api && set PORT=3001&& npm start\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

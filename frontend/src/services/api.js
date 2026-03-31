@@ -18,6 +18,12 @@ export const usersAPI = {
   delete: (id) => apiClient.delete(`/users/${id}`),
 };
 
+// Projects API
+export const projectsAPI = {
+  getAll: () => apiClient.get('/projects'),
+  getById: (id) => apiClient.get(`/projects/${id}`),
+};
+
 // Auth API
 export const authAPI = {
   register: (email, password) => apiClient.post('/auth/register', { email, password }),
